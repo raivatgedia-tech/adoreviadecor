@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Caveat:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ivory: #FAF6ED;
+  --teal: #3E8F8F;
+  --teal-dark: #296666;
+  --coral: #D97D62;
+  --sage: #A88F63;
+  --charcoal: #26211C;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--ivory);
+  color: var(--charcoal);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF6ED;
+}
+::-webkit-scrollbar-thumb {
+  background: #3E8F8F;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #296666;
+}
+
+/* Selection */
+::selection {
+  background-color: #D97D62;
+  color: #FFFDF7;
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid #3E8F8F;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  .font-accent {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .font-signature {
+    font-family: 'Caveat', cursive;
+  }
+
+  .section-padding {
+    @apply px-4 sm:px-8 md:px-12 lg:px-20 xl:px-24;
+  }
+
+  /* Primary CTA: solid ink-stamp rectangle with a hand-trimmed corner,
+     not a generic pill — echoes the card-craft radius used site-wide. */
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 px-7 py-3.5 bg-teal text-offwhite rounded-craft font-body font-medium text-sm tracking-wide transition-all duration-300 hover:bg-teal-dark hover:shadow-hover hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-[#25D366] text-white rounded-craft font-body font-medium text-sm tracking-wide transition-all duration-300 hover:bg-[#1ebe5d] hover:shadow-hover hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border-2 border-charcoal text-charcoal rounded-craft font-body font-medium text-sm tracking-wide transition-all duration-300 hover:bg-charcoal hover:text-ivory hover:-translate-y-0.5;
+  }
+
+  .card-base {
+    @apply bg-offwhite rounded-craft shadow-soft overflow-hidden transition-all duration-400;
+  }
+
+  /* Signature asymmetric "hand-trimmed" corner — one sharp corner instead
+     of uniform rounding, standing in for the machine-perfect rounded-3xl
+     default. Alternates with .rounded-craft-r for visual rhythm. */
+  .card-craft {
+    @apply rounded-craft;
+  }
+
+  /* Thin hand-drawn-style divider, used instead of a straight hairline
+     where the brand's line-art identity should read through. */
+  .ink-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, currentColor 15%, currentColor 85%, transparent);
+    opacity: 0.35;
+    border-radius: 999px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .duration-400 {
+    transition-duration: 400ms;
+  }
+}
