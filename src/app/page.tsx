@@ -13,7 +13,7 @@ import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 import { getProducts } from "@/sanity/queries";
-
+export const revalidate = 60;
 export default async function Home() {
   const products = await getProducts();
 
