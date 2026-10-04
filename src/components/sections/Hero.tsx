@@ -96,3 +96,40 @@ export default function Hero({ products }: { products: Product[] }) {
           </motion.div>
 
           {/* Right: live ticker of newest products, replacing the static circles */}
+          <motion.div
+            className="hidden lg:flex flex-col items-start justify-center gap-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-card">
+              <img
+                src={products[0]?.image}
+                alt={products[0]?.name || "Adore via Décor"}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 bg-offwhite/90 backdrop-blur-sm rounded-2xl px-4 py-2.5">
+                <p className="font-display text-sm font-semibold text-charcoal">{products[0]?.name}</p>
+              </div>
+            </div>
+            <LiveTicker products={products} />
+          </motion.div>
+        </div>
+      </div>
+
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-charcoal/40"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.8 }}
+        style={{ opacity }}
+      >
+        <span className="font-body text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+        <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+          <ArrowDown size={14} />
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
