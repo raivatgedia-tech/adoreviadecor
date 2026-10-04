@@ -123,7 +123,7 @@ export const products: Product[] = [
       "A weighted, swirl-finished resin pen stand that turns a desk essential into a small daily indulgence.",
     shortDescription: "Weighted resin swirl, for a desk essential",
     startingPrice: 549,
-    image: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1583485088034-697b5bc36b5a?w=600&q=80",
     isCustomizable: true,
     isNew: true,
     materials: ["Resin", "Pigment swirl", "Felt base"],

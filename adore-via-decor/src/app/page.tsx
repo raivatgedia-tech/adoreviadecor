@@ -12,19 +12,16 @@ import Testimonials from "@/components/sections/Testimonials";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
-import { getProducts } from "@/sanity/queries";
 
-export default async function Home() {
-  const products = await getProducts();
-
+export default function Home() {
   return (
     <>
       <Navbar />
       <main>
         <Hero />
-        <FeaturedCollections products={products} />
+        <FeaturedCollections />
         <WhyChooseUs />
-        <ProductCatalogue products={products} />
+        <ProductCatalogue />
         <CustomisationProcess />
         <Workshops />
         <CorporateOrders />
