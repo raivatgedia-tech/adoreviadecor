@@ -12,7 +12,7 @@ function StarRating({ rating }: { rating: number }) {
         <Star
           key={i}
           size={12}
-          className={i < rating ? "text-teal fill-teal" : "text-charcoal/20"}
+          className={i < rating ? "text-gold fill-gold" : "text-charcoal/20"}
         />
       ))}
     </div>
@@ -47,15 +47,12 @@ export default function Testimonials() {
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-12 bg-teal" />
-            <span className="font-body text-xs uppercase tracking-[0.3em] text-teal">Happy customers</span>
+            <span className="font-body text-xs uppercase tracking-[0.3em] text-teal">Kind Words</span>
             <div className="h-px w-12 bg-teal" />
           </div>
           <h2 className="font-display text-4xl sm:text-5xl font-light text-charcoal tracking-tight">
-            What our customers say
+            Loved by Our Customers
           </h2>
-          <p className="font-body text-base text-charcoal/55 mt-4 max-w-lg mx-auto">
-            Real words from real people who brought our pieces into their homes and hearts.
-          </p>
         </motion.div>
 
         {/* Carousel */}
@@ -68,18 +65,20 @@ export default function Testimonials() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-offwhite rounded-3xl p-8 shadow-soft relative"
+                className="bg-peach card-craft p-8 shadow-soft relative"
               >
-                <Quote size={28} className="text-teal/20 mb-4" />
+                <Quote size={24} className="text-coral/40 mb-4 fill-coral/10" />
                 <p className="font-body text-sm text-charcoal/70 leading-relaxed mb-6 italic">
                   &ldquo;{t.review}&rdquo;
                 </p>
-                <div className="mt-auto">
-                  <StarRating rating={t.rating} />
-                  <div className="mt-3">
+                <div className="mt-auto flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-teal text-offwhite flex items-center justify-center font-display font-semibold text-sm shrink-0">
+                    {t.name.charAt(0)}
+                  </div>
+                  <div>
                     <p className="font-display text-base font-semibold text-charcoal">{t.name}</p>
                     <p className="font-body text-xs text-charcoal/45">{t.location}</p>
-                    <p className="font-body text-xs text-teal mt-0.5">{t.product}</p>
+                    <StarRating rating={t.rating} />
                   </div>
                 </div>
               </motion.div>
@@ -94,17 +93,21 @@ export default function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.4 }}
-              className="bg-offwhite rounded-3xl p-8 shadow-soft"
+              className="bg-peach card-craft p-8 shadow-soft"
             >
-              <Quote size={28} className="text-teal/20 mb-4" />
+              <Quote size={24} className="text-coral/40 mb-4 fill-coral/10" />
               <p className="font-body text-sm text-charcoal/70 leading-relaxed mb-6 italic">
                 &ldquo;{testimonials[current].review}&rdquo;
               </p>
-              <StarRating rating={testimonials[current].rating} />
-              <div className="mt-3">
-                <p className="font-display text-base font-semibold text-charcoal">{testimonials[current].name}</p>
-                <p className="font-body text-xs text-charcoal/45">{testimonials[current].location}</p>
-                <p className="font-body text-xs text-teal mt-0.5">{testimonials[current].product}</p>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-teal text-offwhite flex items-center justify-center font-display font-semibold text-sm shrink-0">
+                  {testimonials[current].name.charAt(0)}
+                </div>
+                <div>
+                  <p className="font-display text-base font-semibold text-charcoal">{testimonials[current].name}</p>
+                  <p className="font-body text-xs text-charcoal/45">{testimonials[current].location}</p>
+                  <StarRating rating={testimonials[current].rating} />
+                </div>
               </div>
             </motion.div>
           </div>

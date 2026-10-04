@@ -1,16 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Caveat:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --ivory: #F8F5EF;
-  --teal: #79C5C8;
-  --teal-dark: #5BADB0;
-  --coral: #E8B0A8;
-  --sage: #8EA89A;
-  --charcoal: #222222;
+  --ivory: #FFF4EC;
+  --teal: #4E9E93;
+  --teal-dark: #2F7268;
+  --coral: #E8887E;
+  --gold: #ECC85C;
+  --deepgreen: #1D4C3A;
+  --sage: #A88F63;
+  --charcoal: #26211C;
 }
 
 * {
@@ -34,27 +36,36 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F8F5EF;
+  background: #FFF4EC;
 }
 ::-webkit-scrollbar-thumb {
-  background: #79C5C8;
+  background: #4E9E93;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #5BADB0;
+  background: #2F7268;
 }
 
 /* Selection */
 ::selection {
-  background-color: #E8B0A8;
-  color: #222222;
+  background-color: #E8887E;
+  color: #FFFDF7;
 }
 
 /* Focus visible */
 :focus-visible {
-  outline: 2px solid #79C5C8;
+  outline: 2px solid #4E9E93;
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @layer components {
@@ -64,25 +75,44 @@ body {
   .font-accent {
     font-family: 'Playfair Display', Georgia, serif;
   }
-  
+  .font-signature {
+    font-family: 'Caveat', cursive;
+  }
+
   .section-padding {
     @apply px-4 sm:px-8 md:px-12 lg:px-20 xl:px-24;
   }
 
+  /* Pill CTAs, per the approved design comp. */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-teal text-white rounded-full font-body font-medium text-sm tracking-wide transition-all duration-300 hover:bg-teal-dark hover:shadow-hover hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2;
+    @apply relative inline-flex items-center gap-2 px-7 py-3.5 bg-teal text-offwhite rounded-full font-body font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-teal-dark hover:shadow-hover hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2;
   }
 
   .btn-whatsapp {
-    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-[#25D366] text-white rounded-full font-body font-medium text-sm tracking-wide transition-all duration-300 hover:bg-[#1ebe5d] hover:shadow-hover hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-[#25D366] text-white rounded-full font-body font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-[#1ebe5d] hover:shadow-hover hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 px-7 py-3.5 border-2 border-charcoal text-charcoal rounded-full font-body font-medium text-sm tracking-wide transition-all duration-300 hover:bg-charcoal hover:text-ivory hover:-translate-y-0.5;
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border-2 border-charcoal text-charcoal rounded-full font-body font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-charcoal hover:text-ivory hover:-translate-y-0.5;
   }
 
   .card-base {
     @apply bg-offwhite rounded-3xl shadow-soft overflow-hidden transition-all duration-400;
+  }
+
+  /* Soft, uniform rounding used across category/testimonial cards,
+     per the approved design comp — replaces the earlier asymmetric look. */
+  .card-craft {
+    @apply rounded-3xl;
+  }
+
+  /* Thin hand-drawn-style divider, used instead of a straight hairline
+     where the brand's line-art identity should read through. */
+  .ink-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, currentColor 15%, currentColor 85%, transparent);
+    opacity: 0.35;
+    border-radius: 999px;
   }
 }
 
@@ -92,5 +122,12 @@ body {
   }
   .duration-400 {
     transition-duration: 400ms;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }

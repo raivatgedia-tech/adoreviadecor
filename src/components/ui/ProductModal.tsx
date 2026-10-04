@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, MessageCircle, Clock, Package, Wrench } from "lucide-react";
+import { X, Clock, Package, Wrench } from "lucide-react";
 import { Product } from "@/types";
 import { getProductWhatsAppURL } from "@/lib/whatsapp";
 import { useEffect } from "react";
+import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
 interface ProductModalProps {
   product: Product | null;
@@ -172,7 +173,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                       rel="noopener noreferrer"
                       className="btn-whatsapp w-full justify-center"
                     >
-                      <MessageCircle size={16} />
+                      <WhatsAppIcon size={16} />
                       Enquire on WhatsApp
                     </a>
                   </div>

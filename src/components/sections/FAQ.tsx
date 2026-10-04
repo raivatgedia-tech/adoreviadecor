@@ -108,7 +108,7 @@ export default function FAQ() {
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="bg-offwhite rounded-3xl shadow-soft px-8 py-2"
+        className="bg-offwhite card-craft shadow-soft px-8 py-2"
       >
         {filtered.map((faq) => (
           <FAQItem

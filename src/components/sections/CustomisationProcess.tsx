@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Search, MessageCircle, CheckCircle, Hammer, Package } from "lucide-react";
+import { Search, CheckCircle, Hammer, Package } from "lucide-react";
+import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
 const steps = [
   {
@@ -14,7 +15,7 @@ const steps = [
     iconColor: "text-teal-dark",
   },
   {
-    icon: MessageCircle,
+    icon: WhatsAppIcon,
     number: "02",
     title: "Discuss your design",
     description: "Reach out on WhatsApp. Suhani personally discusses your vision, customisation preferences, colors, size, and any special touches.",

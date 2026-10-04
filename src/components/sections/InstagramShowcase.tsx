@@ -4,16 +4,9 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Instagram } from "lucide-react";
 
-const instagramImages = [
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",
-  "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&q=80",
-  "https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80",
-  "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&q=80",
-  "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400&q=80",
-  "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=400&q=80",
-  "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&q=80",
-  "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80",
-];
+// Solid-colour placeholder tiles, per the approved design — swap for real
+// Instagram photos once Suhani has a content library to pull from.
+const tileColors = ["#4E9E93", "#E8887E", "#ECC85C", "#8B3A3A", "#1D4C3A", "#E8887E"];
 
 export default function InstagramShowcase() {
   const headerRef = useRef(null);
@@ -36,40 +29,31 @@ export default function InstagramShowcase() {
             <div className="h-px w-12 bg-teal" />
           </div>
           <h2 className="font-display text-4xl sm:text-5xl font-light text-charcoal tracking-tight">
-            As seen on Instagram
+            Follow Our Creative Journey
           </h2>
           <p className="font-body text-base text-charcoal/55 mt-3 max-w-sm mx-auto">
-            Behind the scenes, new drops, and happy customers.
+            @adoreviadecor
           </p>
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
-          {instagramImages.map((img, i) => (
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-4 mb-10">
+          {tileColors.map((color, i) => (
             <motion.a
               key={i}
               href="https://instagram.com/adore.viadecor"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+              style={{ backgroundColor: color }}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
-              aria-label={`View post ${i + 1} on Instagram`}
+              aria-label="Visit our Instagram"
             >
-              <img
-                src={img}
-                alt=""
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                loading="lazy"
-                aria-hidden
-              />
-              <div className="absolute inset-0 bg-teal/0 group-hover:bg-teal/30 transition-colors duration-400 flex items-center justify-center">
-                <Instagram
-                  size={28}
-                  className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-charcoal/10">
+                <Instagram size={24} className="text-white" />
               </div>
             </motion.a>
           ))}

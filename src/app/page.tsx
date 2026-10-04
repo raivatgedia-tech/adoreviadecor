@@ -5,6 +5,8 @@ import FeaturedCollections from "@/components/sections/FeaturedCollections";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import ProductCatalogue from "@/components/sections/ProductCatalogue";
 import CustomisationProcess from "@/components/sections/CustomisationProcess";
+import OurStory from "@/components/sections/OurStory";
+import WorkshopBulkBanner from "@/components/sections/WorkshopBulkBanner";
 import Workshops from "@/components/sections/Workshops";
 import CorporateOrders from "@/components/sections/CorporateOrders";
 import InstagramShowcase from "@/components/sections/InstagramShowcase";
@@ -12,18 +14,23 @@ import Testimonials from "@/components/sections/Testimonials";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
-import { products } from "@/data/products";
+import { getProducts } from "@/sanity/queries";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const products = await getProducts();
+
   return (
     <>
       <Navbar />
       <main>
-       <Hero products={products} />
-
+        <Hero products={products} />
         <FeaturedCollections products={products} />
         <WhyChooseUs />
-    <ProductCatalogue products={products} />
+        <OurStory />
+        <WorkshopBulkBanner />
+        <ProductCatalogue products={products} />
         <CustomisationProcess />
         <Workshops />
         <CorporateOrders />

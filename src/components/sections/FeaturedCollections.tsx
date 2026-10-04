@@ -5,58 +5,62 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 
+import { Product } from "@/types";
+
 const collections = [
   {
-    id: "name-plates",
-    title: "Name Plates",
-    subtitle: "Make your entrance unforgettable",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80",
-    color: "from-teal/20 to-teal/5",
-    accent: "#79C5C8",
+    id: "fridge-magnets",
+    title: "Fridge Magnets",
+    subtitle: "Name · Cartoon · Monogram · Photo Frame · Couple",
+    image: "https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?w=600&q=80",
+    accent: "#4E9E93",
   },
   {
-    id: "resin-art",
-    title: "Resin Art",
-    subtitle: "Living colour, frozen in time",
-    image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&q=80",
-    color: "from-coral/20 to-coral/5",
-    accent: "#E8B0A8",
+    id: "home-decor",
+    title: "Home Décor",
+    subtitle: "Nameplates · Lippan Art · Signboards · Serving Platters",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=90",
+    accent: "#E8887E",
   },
   {
-    id: "personalized-gifts",
-    title: "Personalised Gifts",
-    subtitle: "Thoughtfulness, beautifully made",
-    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&q=80",
-    color: "from-sage/20 to-sage/5",
-    accent: "#8EA89A",
+    id: "kids-collection",
+    title: "Kids Collection",
+    subtitle: "Cartoon Name Boards · Magnets · Photo Frames",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&q=80",
+    accent: "#ECC85C",
   },
   {
-    id: "wedding-gifts",
-    title: "Wedding Gifts",
-    subtitle: "Celebrate love with artisan craftsmanship",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80",
-    color: "from-teal/15 to-coral/10",
-    accent: "#79C5C8",
+    id: "personalized-gifts-accessories",
+    title: "Personalized Gifts & Accessories",
+    subtitle: "Bottles · Mugs · Keychains · Tote Bags · Pouches & more",
+    image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80",
+    accent: "#4E9E93",
+  },
+  {
+    id: "deskscapes",
+    title: "Deskscapes",
+    subtitle: "Office & Desk Décor — Table Tops · Pen Stands · Planters",
+    image: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?w=600&q=80",
+    accent: "#E8887E",
   },
   {
     id: "festive-collection",
     title: "Festive Collection",
-    subtitle: "Every festival, elevated",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&q=80",
-    color: "from-coral/20 to-teal/10",
-    accent: "#E8B0A8",
-  },
-  {
-    id: "diy-kits",
-    title: "DIY Kits",
-    subtitle: "Create your own masterpiece",
-    image: "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=600&q=80",
-    color: "from-sage/20 to-teal/10",
-    accent: "#8EA89A",
+    subtitle: "Resin Art & Puja Décor — Resin Clocks · Saraswati Yantra",
+    image: "https://images.unsplash.com/photo-1501139083538-0139583c060f?w=600&q=80",
+    accent: "#ECC85C",
   },
 ];
 
-function CollectionCard({ collection, index }: { collection: typeof collections[0]; index: number }) {
+function CollectionCard({
+  collection,
+  index,
+  image,
+}: {
+  collection: typeof collections[0];
+  index: number;
+  image: string;
+}) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -65,17 +69,22 @@ function CollectionCard({ collection, index }: { collection: typeof collections[
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: (index % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.7, delay: (index % 4) * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
       <a
         href="#catalogue"
-        className="group block relative rounded-3xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-500 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+        onClick={(e) => {
+          e.preventDefault();
+          window.dispatchEvent(new CustomEvent("filterCategory", { detail: collection.id }));
+          document.getElementById("catalogue")?.scrollIntoView({ behavior: "smooth" });
+        }}
+        className="group block relative card-craft overflow-hidden shadow-soft hover:shadow-hover transition-all duration-500 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
         aria-label={`View ${collection.title} collection`}
       >
         {/* Image */}
         <div className="aspect-[4/5] overflow-hidden">
           <img
-            src={collection.image}
+            src={image}
             alt={collection.title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
@@ -105,7 +114,7 @@ function CollectionCard({ collection, index }: { collection: typeof collections[
   );
 }
 
-export default function FeaturedCollections() {
+export default function FeaturedCollections({ products }: { products: Product[] }) {
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true });
 
@@ -133,10 +142,19 @@ export default function FeaturedCollections() {
       </motion.div>
 
       {/* Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-        {collections.map((collection, index) => (
-          <CollectionCard key={collection.id} collection={collection} index={index} />
-        ))}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        {collections.map((collection, index) => {
+          const categoryProducts = products.filter((p) => p.category === collection.id);
+          const featured = categoryProducts.find((p) => p.isBestseller) ?? categoryProducts[0];
+          return (
+            <CollectionCard
+              key={collection.id}
+              collection={collection}
+              index={index}
+              image={featured?.image || collection.image}
+            />
+          );
+        })}
       </div>
     </section>
   );
