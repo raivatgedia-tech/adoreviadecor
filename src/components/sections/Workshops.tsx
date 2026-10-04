@@ -2,10 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Clock, Check } from "lucide-react";
+import { Clock, Check, MessageCircle } from "lucide-react";
 import { workshops } from "@/data/content";
 import { getWorkshopWhatsAppURL } from "@/lib/whatsapp";
-import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
 const typeLabels: Record<string, string> = {
   resin: "Resin Workshop",
@@ -50,7 +49,7 @@ export default function Workshops() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="group bg-white/5 border border-white/10 card-craft overflow-hidden hover:bg-white/8 transition-all duration-400 hover:-translate-y-1"
+              className="group bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:bg-white/8 transition-all duration-400 hover:-translate-y-1"
             >
               {/* Image */}
               <div className="aspect-[16/10] overflow-hidden">
@@ -102,7 +101,7 @@ export default function Workshops() {
                   rel="noopener noreferrer"
                   className="btn-whatsapp w-full justify-center"
                 >
-                  <WhatsAppIcon size={14} />
+                  <MessageCircle size={14} />
                   Book a Workshop
                 </a>
               </div>

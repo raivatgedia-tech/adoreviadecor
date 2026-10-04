@@ -2,8 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Heart, Palette, IndianRupee, Package, Hammer } from "lucide-react";
-import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
+import { Heart, Palette, IndianRupee, Package, Hammer, MessageCircle } from "lucide-react";
 
 const reasons = [
   {
@@ -47,7 +46,7 @@ const reasons = [
     accent: "#79C5C8",
   },
   {
-    icon: WhatsAppIcon,
+    icon: MessageCircle,
     title: "Direct designer interaction",
     description:
       "You speak directly with Suhani — no middlemen, no bots. Get personalised design advice and a truly bespoke piece.",
@@ -95,7 +94,7 @@ export default function WhyChooseUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="group bg-white/5 border border-white/8 card-craft p-8 hover:bg-white/8 transition-all duration-400 hover:-translate-y-1"
+                className="group bg-white/5 border border-white/8 rounded-3xl p-8 hover:bg-white/8 transition-all duration-400 hover:-translate-y-1"
               >
                 <div className={`inline-flex p-3.5 rounded-2xl mb-5 ${reason.color}`}>
                   <Icon size={20} />

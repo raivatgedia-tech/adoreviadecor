@@ -1,48 +1,17 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import {
-  LayoutGrid,
-  Magnet,
-  Home,
-  Briefcase,
-  Baby,
-  Gift,
-  ShoppingBag,
-  UtensilsCrossed,
-  Droplets,
-} from "lucide-react";
-import { productCategories } from "@/data/products";
+import { products, productCategories } from "@/data/products";
 import { Product, ProductCategory } from "@/types";
 import ProductCard from "@/components/ui/ProductCard";
 import ProductModal from "@/components/ui/ProductModal";
 
-const categoryIcons: Record<string, typeof LayoutGrid> = {
-  Magnet,
-  Home,
-  Briefcase,
-  Baby,
-  Gift,
-  ShoppingBag,
-  UtensilsCrossed,
-  Droplets,
-};
-
-export default function ProductCatalogue({ products }: { products: Product[] }) {
+export default function ProductCatalogue() {
   const [activeCategory, setActiveCategory] = useState<ProductCategory | "all">("all");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const headerRef = useRef(null);
   const inView = useInView(headerRef, { once: true });
-
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const category = (e as CustomEvent<string>).detail;
-      setActiveCategory(category as ProductCategory);
-    };
-    window.addEventListener("filterCategory", handler);
-    return () => window.removeEventListener("filterCategory", handler);
-  }, []);
 
   const filtered =
     activeCategory === "all"
@@ -77,30 +46,27 @@ export default function ProductCatalogue({ products }: { products: Product[] }) 
       <div className="flex flex-wrap gap-2.5 justify-center mb-12">
         <button
           onClick={() => setActiveCategory("all")}
-          className={`font-body text-xs px-5 py-2.5 rounded-full border flex items-center gap-2 transition-all duration-200 ${
+          className={`font-body text-xs px-5 py-2.5 rounded-full border transition-all duration-200 ${
             activeCategory === "all"
-              ? "bg-teal text-offwhite border-teal shadow-soft"
+              ? "bg-teal text-white border-teal shadow-soft"
               : "border-charcoal/15 text-charcoal/60 hover:border-teal/40 hover:text-teal"
           }`}
         >
-          <LayoutGrid size={13} />
           All ({products.length})
         </button>
         {productCategories.map((cat) => {
           const count = products.filter((p) => p.category === cat.id).length;
           if (count === 0) return null;
-          const Icon = categoryIcons[cat.icon];
           return (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id as ProductCategory)}
-              className={`font-body text-xs px-5 py-2.5 rounded-full border flex items-center gap-2 transition-all duration-200 ${
+              className={`font-body text-xs px-5 py-2.5 rounded-full border transition-all duration-200 ${
                 activeCategory === cat.id
-                  ? "bg-teal text-offwhite border-teal shadow-soft"
+                  ? "bg-teal text-white border-teal shadow-soft"
                   : "border-charcoal/15 text-charcoal/60 hover:border-teal/40 hover:text-teal"
               }`}
             >
-              {Icon && <Icon size={13} />}
               {cat.label} ({count})
             </button>
           );

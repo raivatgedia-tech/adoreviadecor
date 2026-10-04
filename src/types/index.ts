@@ -1,12 +1,12 @@
 export type ProductCategory =
-  | "fridge-magnets"
-  | "home-wall-decor"
-  | "desk-office"
-  | "kids-collection"
+  | "name-plates"
+  | "resin-art"
   | "personalized-gifts"
-  | "bags-accessories"
-  | "dining-kitchen"
-  | "resin-collection";
+  | "wedding-gifts"
+  | "festive-collection"
+  | "diy-kits"
+  | "home-decor"
+  | "corporate-gifts";
 
 export interface Product {
   id: string;

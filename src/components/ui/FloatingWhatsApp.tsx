@@ -2,9 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { X } from "lucide-react";
+import { MessageCircle, X } from "lucide-react";
 import { getGeneralWhatsAppURL } from "@/lib/whatsapp";
-import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
 export default function FloatingWhatsApp() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -67,7 +66,7 @@ export default function FloatingWhatsApp() {
             className="w-14 h-14 bg-[#25D366] text-white rounded-full shadow-hover flex items-center justify-center hover:bg-[#1ebe5d] transition-colors relative"
             aria-label="Chat on WhatsApp"
           >
-            <WhatsAppIcon size={24} className="text-white" />
+            <MessageCircle size={24} fill="white" />
             {/* Pulse ring */}
             <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20" aria-hidden />
           </motion.button>

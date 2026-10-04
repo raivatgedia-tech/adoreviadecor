@@ -2,9 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Sparkles, ArrowDown } from "lucide-react";
+import { MessageCircle, Sparkles, ArrowDown } from "lucide-react";
 import { getGeneralWhatsAppURL } from "@/lib/whatsapp";
-import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -13,7 +12,7 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   const containerVariants = {
@@ -38,42 +37,23 @@ export default function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden bg-gradient-hero"
       aria-label="Hero"
     >
-      {/* Flat-colour brushstroke washes — echoes the logo's paint-swipe
-          backdrop instead of a soft blurred-blob gradient. */}
+      {/* Decorative bg shapes */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-        <motion.svg
-          viewBox="0 0 500 500"
-          className="absolute -top-16 right-[-8%] w-[65%] max-w-[640px] opacity-[0.16]"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <path
-            d="M40,150 C120,70 270,55 350,120 C430,185 410,290 320,315 C220,342 40,300 40,150 Z"
-            fill="#3E8F8F"
-          />
-        </motion.svg>
-        <motion.svg
-          viewBox="0 0 500 500"
-          className="absolute bottom-[-10%] left-[-6%] w-[50%] max-w-[520px] opacity-[0.14]"
-          animate={{ y: [0, -12, 0] }}
-          transition={{ duration: 17, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        >
-          <path
-            d="M300,420 C390,395 470,440 455,515 C440,590 330,605 265,570 C200,535 215,445 300,420 Z"
-            fill="#D97D62"
-          />
-        </motion.svg>
-        <motion.svg
-          viewBox="0 0 300 300"
-          className="absolute top-[38%] left-[6%] w-[20%] max-w-[220px] opacity-[0.16]"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-        >
-          <path
-            d="M60,120 C40,70 90,30 150,40 C210,50 230,110 190,150 C150,190 80,170 60,120 Z"
-            fill="#A88F63"
-          />
-        </motion.svg>
+        <motion.div
+          className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-teal/8 blur-3xl"
+          animate={{ scale: [1, 1.08, 1], rotate: [0, 10, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute -bottom-24 -left-24 w-[480px] h-[480px] rounded-full bg-coral/10 blur-3xl"
+          animate={{ scale: [1, 1.1, 1], rotate: [0, -8, 0] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+        />
+        <motion.div
+          className="absolute top-1/3 left-1/4 w-[280px] h-[280px] rounded-full bg-sage/8 blur-3xl"
+          animate={{ scale: [1, 1.15, 1] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 6 }}
+        />
       </div>
 
       <div className="section-padding max-w-7xl mx-auto w-full relative z-10">
@@ -87,7 +67,7 @@ export default function Hero() {
           >
             <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
               <div className="h-px w-8 bg-teal" />
-              <span className="font-body text-xs uppercase tracking-[0.3em] text-sage font-medium">
+              <span className="font-body text-xs uppercase tracking-[0.3em] text-teal font-medium">
                 Handcrafted with love
               </span>
             </motion.div>
@@ -105,16 +85,9 @@ export default function Hero() {
 
             <motion.p
               variants={itemVariants}
-              className="font-body text-base sm:text-lg text-charcoal/60 leading-relaxed max-w-md mb-8"
+              className="font-body text-base sm:text-lg text-charcoal/60 leading-relaxed max-w-md mb-10"
             >
-              Premium resin art, personalised name plates, wedding gifts & festive décor — handcrafted in Mumbai and styled entirely around you.
-            </motion.p>
-
-            <motion.p
-              variants={itemVariants}
-              className="font-signature text-2xl text-coral -rotate-1 mb-8"
-            >
-              — designed &amp; handcrafted by Suhani
+              Premium resin art, personalised name plates, wedding gifts & festive décor — each piece crafted to order, just for you.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
@@ -131,7 +104,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className="btn-whatsapp shadow-soft"
               >
-                <WhatsAppIcon size={15} />
+                <MessageCircle size={15} />
                 Chat on WhatsApp
               </a>
             </motion.div>
@@ -144,87 +117,58 @@ export default function Hero() {
                 { num: "500+", label: "Happy customers" },
                 { num: "100%", label: "Customisable" },
                 { num: "4.9★", label: "Average rating" },
-              ].map((stat, i) => (
-                <div key={stat.label} className="flex items-center gap-8">
-                  {i > 0 && <div className="w-px h-9 bg-charcoal/10" />}
-                  <div>
-                    <p className="font-display text-2xl font-semibold text-charcoal">{stat.num}</p>
-                    <p className="font-body text-xs text-charcoal/50 mt-0.5">{stat.label}</p>
-                  </div>
+              ].map((stat) => (
+                <div key={stat.label}>
+                  <p className="font-display text-2xl font-semibold text-charcoal">{stat.num}</p>
+                  <p className="font-body text-xs text-charcoal/50 mt-0.5">{stat.label}</p>
                 </div>
               ))}
             </motion.div>
           </motion.div>
 
-          {/* Right: signature line-art illustration, drawn on load —
-              stands in for a stock photo collage and mirrors the brand's
-              own one-line logo motif. */}
+          {/* Right: Image collage */}
           <motion.div
-            className="relative hidden lg:flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
+            className="relative hidden lg:block"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             style={{ y }}
           >
-            <div className="relative w-full aspect-square max-w-[520px]">
-              <svg
-                viewBox="0 0 500 560"
-                className="w-full h-full"
-                fill="none"
-                aria-hidden
-              >
-                {/* the continuous line */}
-                <motion.path
-                  d="M70,470 C70,390 150,390 160,320 C170,250 100,230 110,170 C120,110 210,90 250,140
-                     C290,190 220,235 265,275 C310,315 395,295 415,215 C432,148 380,95 305,90
-                     C245,86 195,125 220,168"
-                  stroke="#26211C"
-                  strokeWidth="3.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 2.2, ease: [0.65, 0, 0.35, 1], delay: 0.6 }}
-                />
-                {/* a second, teal thread crossing it — the "thread" that ties every piece together */}
-                <motion.path
-                  d="M90,180 C160,110 250,105 300,165 C350,225 300,290 350,330 C400,370 440,330 430,270"
-                  stroke="#3E8F8F"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 2, ease: [0.65, 0, 0.35, 1], delay: 1.5 }}
-                />
-                {/* accent dots — where a bead of resin or gold leaf catches light */}
-                {[
-                  { cx: 160, cy: 320, r: 6, fill: "#D97D62", delay: 2.9 },
-                  { cx: 265, cy: 275, r: 5, fill: "#A88F63", delay: 3.15 },
-                  { cx: 415, cy: 215, r: 7, fill: "#3E8F8F", delay: 3.4 },
-                ].map((dot) => (
-                  <motion.circle
-                    key={`${dot.cx}-${dot.cy}`}
-                    cx={dot.cx}
-                    cy={dot.cy}
-                    r={dot.r}
-                    fill={dot.fill}
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: dot.delay, ease: [0.34, 1.56, 0.64, 1] }}
-                  />
-                ))}
-              </svg>
-
-              {/* Made in Mumbai mark, anchored bottom-right of the illustration */}
+            <div className="relative w-full aspect-[4/5]">
+              {/* Main image */}
               <motion.div
-                className="absolute -right-4 bottom-6 bg-teal card-craft shadow-card px-5 py-3.5 text-offwhite"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 3.6 }}
+                className="absolute inset-0 rounded-[2.5rem] overflow-hidden shadow-hover"
+                whileHover={{ scale: 1.01 }}
+                transition={{ duration: 0.4 }}
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=90"
+                  alt="Handcrafted resin art pieces"
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent" />
+              </motion.div>
+
+              {/* Floating accent card */}
+              <motion.div
+                className="absolute -left-10 top-1/4 bg-ivory rounded-2xl shadow-card p-4 w-44"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <p className="font-body text-[10px] uppercase tracking-[0.2em] text-sage mb-1">Featured</p>
+                <p className="font-display text-sm font-semibold text-charcoal">Floral Resin<br />Name Plate</p>
+                <p className="font-body text-xs text-teal mt-1.5">From ₹799</p>
+              </motion.div>
+
+              {/* Badge */}
+              <motion.div
+                className="absolute -right-6 bottom-1/4 bg-teal rounded-2xl shadow-card p-4 text-white"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               >
                 <p className="font-body text-[10px] uppercase tracking-[0.15em] text-teal-light mb-0.5">Made in</p>
-                <p className="font-display text-sm font-bold">Mumbai, India</p>
+                <p className="font-display text-sm font-bold">Mumbai 🇮🇳</p>
                 <p className="font-body text-[10px] text-teal-light mt-0.5">Ships pan-India</p>
               </motion.div>
             </div>

@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { MessageCircle, Sparkles } from "lucide-react";
 import { Product } from "@/types";
 import { getProductWhatsAppURL } from "@/lib/whatsapp";
-import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
 interface ProductCardProps {
   product: Product;
@@ -19,7 +18,7 @@ export default function ProductCard({ product, onOpenModal }: ProductCardProps) 
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="group bg-offwhite card-craft overflow-hidden shadow-soft hover:shadow-hover transition-all duration-400 hover:-translate-y-1 flex flex-col"
+      className="group bg-offwhite rounded-3xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-400 hover:-translate-y-1 flex flex-col"
     >
       {/* Image */}
       <div
@@ -108,7 +107,7 @@ export default function ProductCard({ product, onOpenModal }: ProductCardProps) 
             aria-label={`Order ${product.name} on WhatsApp`}
             onClick={(e) => e.stopPropagation()}
           >
-            <WhatsAppIcon size={13} />
+            <MessageCircle size={13} />
             Order
           </a>
         </div>

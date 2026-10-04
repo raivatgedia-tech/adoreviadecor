@@ -3,9 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, MessageCircle } from "lucide-react";
 import { getGeneralWhatsAppURL } from "@/lib/whatsapp";
-import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
 const navLinks = [
   { href: "#collections", label: "Collections" },
@@ -40,12 +39,13 @@ export default function Navbar() {
       >
         <div className="section-padding max-w-7xl mx-auto flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center group" aria-label="Adore via Décor home">
-            <img
-              src="/logo.png"
-              alt="Adore via Décor by Suhani"
-              className="h-16 md:h-20 w-auto -my-2 transition-transform duration-300 group-hover:scale-[1.03]"
-            />
+          <Link href="/" className="flex flex-col leading-none group" aria-label="Adore via Décor home">
+            <span className="font-display text-2xl font-semibold text-charcoal tracking-tight group-hover:text-teal transition-colors duration-300">
+              Adore via Décor
+            </span>
+            <span className="font-body text-[10px] uppercase tracking-[0.25em] text-sage mt-0.5">
+              by Suhani
+            </span>
           </Link>
 
           {/* Desktop Nav */}
@@ -69,7 +69,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="btn-whatsapp text-xs px-5 py-2.5"
             >
-              <WhatsAppIcon size={14} />
+              <MessageCircle size={14} />
               WhatsApp Us
             </a>
           </div>
@@ -124,7 +124,7 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className="btn-whatsapp w-full justify-center"
                 >
-                  <WhatsAppIcon size={16} />
+                  <MessageCircle size={16} />
                   Chat on WhatsApp
                 </a>
               </motion.div>

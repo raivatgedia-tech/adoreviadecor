@@ -68,7 +68,7 @@ export default function Testimonials() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-offwhite card-craft p-8 shadow-soft relative"
+                className="bg-offwhite rounded-3xl p-8 shadow-soft relative"
               >
                 <Quote size={28} className="text-teal/20 mb-4" />
                 <p className="font-body text-sm text-charcoal/70 leading-relaxed mb-6 italic">
@@ -94,7 +94,7 @@ export default function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.4 }}
-              className="bg-offwhite card-craft p-8 shadow-soft"
+              className="bg-offwhite rounded-3xl p-8 shadow-soft"
             >
               <Quote size={28} className="text-teal/20 mb-4" />
               <p className="font-body text-sm text-charcoal/70 leading-relaxed mb-6 italic">

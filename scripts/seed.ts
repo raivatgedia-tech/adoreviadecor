@@ -13,6 +13,9 @@
  * Safe to re-run — it skips any product whose name already exists in
  * the dataset instead of creating duplicates.
  */
+import { config } from "dotenv";
+config({ path: ".env.local" });
+
 import { createClient } from "@sanity/client";
 import { products } from "../src/data/products";
 

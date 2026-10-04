@@ -2,9 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Users, Gift, Star, Building2 } from "lucide-react";
+import { Users, Gift, Star, Building2, MessageCircle } from "lucide-react";
 import { getBulkOrderWhatsAppURL } from "@/lib/whatsapp";
-import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
 const useCases = [
   {
@@ -71,7 +70,7 @@ export default function CorporateOrders() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="group flex gap-5 bg-offwhite card-craft p-6 shadow-soft hover:shadow-card transition-all duration-400 hover:-translate-y-0.5"
+              className="group flex gap-5 bg-offwhite rounded-3xl p-6 shadow-soft hover:shadow-card transition-all duration-400 hover:-translate-y-0.5"
             >
               <div className="shrink-0">
                 <div className="w-14 h-14 rounded-2xl overflow-hidden">
@@ -107,10 +106,10 @@ export default function CorporateOrders() {
         <div className="relative z-10">
           <p className="font-body text-xs uppercase tracking-[0.3em] text-teal-light mb-3">Ready to order?</p>
           <h3 className="font-display text-3xl sm:text-4xl font-semibold text-white mb-4">
-            Let&apos;s Talk Bulk Orders
+            Request a Bulk Quote
           </h3>
           <p className="font-body text-sm text-teal-light max-w-md mx-auto mb-8 leading-relaxed">
-            Message Suhani directly with your quantity, budget, occasion, and customisation needs — she&apos;ll walk you through pricing and timelines over WhatsApp.
+            Share your requirements with Suhani directly — quantity, budget, occasion, and customisation needs. You'll receive a detailed proposal within 24 hours.
           </p>
           <a
             href={getBulkOrderWhatsAppURL()}
@@ -118,8 +117,8 @@ export default function CorporateOrders() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 px-8 py-4 bg-white text-teal-dark font-body font-semibold text-sm rounded-full shadow-soft hover:shadow-hover hover:-translate-y-0.5 transition-all duration-300"
           >
-            <WhatsAppIcon size={16} />
-            Discuss Your Order on WhatsApp
+            <MessageCircle size={16} />
+            Request Bulk Quote on WhatsApp
           </a>
         </div>
       </motion.div>

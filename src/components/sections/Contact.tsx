@@ -2,9 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Phone, Instagram, MapPin } from "lucide-react";
+import { Phone, Instagram, MessageCircle, MapPin } from "lucide-react";
 import { getGeneralWhatsAppURL } from "@/lib/whatsapp";
-import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
 const contacts = [
   {
@@ -16,7 +15,7 @@ const contacts = [
     description: "Mon–Sat, 10am–7pm",
   },
   {
-    icon: WhatsAppIcon,
+    icon: MessageCircle,
     label: "WhatsApp",
     value: "Chat with Suhani",
     href: getGeneralWhatsAppURL(),
@@ -85,7 +84,7 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group bg-white/5 border border-white/8 card-craft p-7 text-center hover:bg-white/10 hover:-translate-y-1 transition-all duration-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+                className="group bg-white/5 border border-white/8 rounded-3xl p-7 text-center hover:bg-white/10 hover:-translate-y-1 transition-all duration-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
               >
                 <div className={`inline-flex p-4 rounded-2xl mb-4 ${c.color}`}>
                   <Icon size={22} />
@@ -112,7 +111,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             className="btn-whatsapp shadow-soft px-10 py-4 text-base"
           >
-            <WhatsAppIcon size={18} />
+            <MessageCircle size={18} />
             Start a WhatsApp Conversation
           </a>
           <p className="font-body text-xs text-ivory/30 mt-4">

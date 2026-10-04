@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { Phone, Instagram, Heart } from "lucide-react";
+import { Phone, Instagram, MessageCircle, Heart } from "lucide-react";
 import { getGeneralWhatsAppURL } from "@/lib/whatsapp";
-import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -27,7 +26,7 @@ export default function Footer() {
                 className="flex items-center gap-2 px-4 py-2 bg-[#25D366] text-white rounded-full text-xs font-medium hover:bg-[#1ebe5d] transition-colors"
                 aria-label="Chat on WhatsApp"
               >
-                <WhatsAppIcon size={13} />
+                <MessageCircle size={13} />
                 WhatsApp
               </a>
               <a
@@ -48,14 +47,13 @@ export default function Footer() {
             <p className="font-body text-xs uppercase tracking-[0.2em] text-teal mb-5">Collections</p>
             <ul className="space-y-3">
               {[
-                "Fridge Magnets",
-                "Home & Wall Décor",
-                "Desk & Office",
-                "Kids Collection",
+                "Name Plates",
+                "Resin Art",
                 "Personalised Gifts",
-                "Bags & Accessories",
-                "Dining & Kitchen",
-                "Resin Collection",
+                "Wedding Gifting",
+                "Festive Collection",
+                "DIY Kits",
+                "Corporate Gifting",
               ].map((item) => (
                 <li key={item}>
                   <Link
@@ -89,7 +87,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 font-body text-sm text-ivory/60 hover:text-teal transition-colors"
                 >
-                  <WhatsAppIcon size={14} className="text-teal shrink-0" />
+                  <MessageCircle size={14} className="text-teal shrink-0" />
                   Chat on WhatsApp
                 </a>
               </li>
