@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 
 import { Product } from "@/types";
@@ -61,14 +59,11 @@ function CollectionCard({
   index: number;
   image: string;
 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.7, delay: (index % 4) * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
       <a
@@ -115,16 +110,13 @@ function CollectionCard({
 }
 
 export default function FeaturedCollections({ products }: { products: Product[] }) {
-  const headerRef = useRef(null);
-  const headerInView = useInView(headerRef, { once: true });
-
   return (
     <section id="collections" className="py-24 section-padding max-w-7xl mx-auto">
       {/* Header */}
       <motion.div
-        ref={headerRef}
         initial={{ opacity: 0, y: 30 }}
-        animate={headerInView ? { opacity: 1, y: 0 } : {}}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="text-center mb-16"
       >

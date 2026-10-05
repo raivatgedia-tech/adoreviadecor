@@ -1,15 +1,11 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
 
 const checklist = ["100% Hand-made", "Personalised", "Quality Materials", "Perfect for Gifting & Décor"];
 
 export default function OurStory() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-
   return (
     <section id="about" className="py-24 bg-ivory overflow-hidden">
       <div className="section-padding max-w-7xl mx-auto">
@@ -17,7 +13,8 @@ export default function OurStory() {
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
@@ -33,7 +30,8 @@ export default function OurStory() {
           {/* Text */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-coral/15 text-coral font-body text-xs uppercase tracking-[0.2em] font-semibold mb-5">

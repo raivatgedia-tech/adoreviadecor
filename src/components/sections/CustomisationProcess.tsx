@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Search, CheckCircle, Hammer, Package } from "lucide-react";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
@@ -49,17 +48,15 @@ const steps = [
 ];
 
 export default function CustomisationProcess() {
-  const headerRef = useRef(null);
-  const inView = useInView(headerRef, { once: true });
 
   return (
     <section className="py-24 bg-gradient-to-b from-ivory to-offwhite overflow-hidden">
       <div className="section-padding max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
-          ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >

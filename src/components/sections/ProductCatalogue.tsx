@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutGrid,
   Magnet,
@@ -28,8 +28,6 @@ const categoryIcons: Record<string, typeof LayoutGrid> = {
 export default function ProductCatalogue({ products }: { products: Product[] }) {
   const [activeCategory, setActiveCategory] = useState<ProductCategory | "all">("all");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const headerRef = useRef(null);
-  const inView = useInView(headerRef, { once: true });
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -49,9 +47,9 @@ export default function ProductCatalogue({ products }: { products: Product[] }) 
     <section id="catalogue" className="py-24 section-padding max-w-7xl mx-auto">
       {/* Header */}
       <motion.div
-        ref={headerRef}
         initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="text-center mb-12"
       >

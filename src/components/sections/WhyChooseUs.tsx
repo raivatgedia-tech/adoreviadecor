@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Sparkles, Heart as HeartIcon, Gem, HeartHandshake, Gift } from "lucide-react";
 
 const reasons = [
@@ -13,16 +12,14 @@ const reasons = [
 ];
 
 export default function WhyChooseUs() {
-  const headerRef = useRef(null);
-  const inView = useInView(headerRef, { once: true });
 
   return (
     <section className="py-24 bg-deepgreen overflow-hidden">
       <div className="section-padding max-w-7xl mx-auto">
         <motion.div
-          ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >

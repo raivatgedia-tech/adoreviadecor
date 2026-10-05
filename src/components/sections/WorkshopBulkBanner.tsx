@@ -1,19 +1,16 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { getBulkOrderWhatsAppURL } from "@/lib/whatsapp";
 
 export default function WorkshopBulkBanner() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
 
   return (
     <section className="section-padding max-w-7xl mx-auto py-12">
       <motion.div
-        ref={ref}
         initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="relative bg-gradient-coral rounded-3xl px-8 sm:px-12 py-10 sm:py-12 flex flex-col sm:flex-row items-center justify-between gap-8 overflow-hidden"
       >

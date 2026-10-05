@@ -1,23 +1,20 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
 import { getGeneralWhatsAppURL } from "@/lib/whatsapp";
 
 export default function Contact() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-
   return (
     <section id="contact" className="py-24 bg-ivory">
       <div className="section-padding max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main CTA card */}
           <motion.div
-            ref={ref}
             initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+
+            viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-1 bg-deepgreen rounded-3xl p-8 flex flex-col justify-center"
           >
@@ -42,7 +39,9 @@ export default function Contact() {
           {/* Follow us QR */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+
+            viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="bg-peach rounded-3xl p-8 flex flex-col items-center text-center justify-center"
           >
@@ -58,7 +57,9 @@ export default function Contact() {
           {/* WhatsApp QR */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+
+            viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="bg-peach rounded-3xl p-8 flex flex-col items-center text-center justify-center"
           >

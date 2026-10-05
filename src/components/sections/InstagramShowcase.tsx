@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
 
 // Solid-colour placeholder tiles, per the approved design — swap for real
@@ -9,17 +8,15 @@ import { Instagram } from "lucide-react";
 const tileColors = ["#4E9E93", "#E8887E", "#ECC85C", "#8B3A3A", "#1D4C3A", "#E8887E"];
 
 export default function InstagramShowcase() {
-  const headerRef = useRef(null);
-  const inView = useInView(headerRef, { once: true });
 
   return (
     <section className="py-24 bg-offwhite overflow-hidden">
       <div className="section-padding max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
-          ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12"
         >
@@ -52,8 +49,8 @@ export default function InstagramShowcase() {
               transition={{ duration: 0.5, delay: i * 0.06 }}
               aria-label="Visit our Instagram"
             >
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-charcoal/10">
-                <Instagram size={24} className="text-white" />
+              <div className="absolute inset-0 flex items-center justify-center bg-charcoal/0 group-hover:bg-charcoal/15 transition-colors duration-300">
+                <Instagram size={22} className="text-white/70 group-hover:text-white transition-colors duration-300" strokeWidth={1.75} />
               </div>
             </motion.a>
           ))}

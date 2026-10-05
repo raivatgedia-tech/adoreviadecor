@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import { faqs } from "@/data/content";
 
@@ -60,8 +60,6 @@ const categoryLabels: Record<string, string> = {
 export default function FAQ() {
   const [openId, setOpenId] = useState<string | null>("f-001");
   const [filter, setFilter] = useState<string>("all");
-  const headerRef = useRef(null);
-  const inView = useInView(headerRef, { once: true });
 
   const categories = ["all", ...Array.from(new Set(faqs.map((f) => f.category)))];
   const filtered = filter === "all" ? faqs : faqs.filter((f) => f.category === filter);
@@ -70,9 +68,9 @@ export default function FAQ() {
     <section className="py-24 section-padding max-w-4xl mx-auto">
       {/* Header */}
       <motion.div
-        ref={headerRef}
         initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         className="text-center mb-12"
       >
@@ -106,7 +104,8 @@ export default function FAQ() {
       {/* Accordion */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
         className="bg-offwhite card-craft shadow-soft px-8 py-2"
       >

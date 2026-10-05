@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Clock, Check } from "lucide-react";
 import { workshops } from "@/data/content";
 import { getWorkshopWhatsAppURL } from "@/lib/whatsapp";
@@ -14,17 +13,15 @@ const typeLabels: Record<string, string> = {
 };
 
 export default function Workshops() {
-  const headerRef = useRef(null);
-  const inView = useInView(headerRef, { once: true });
 
   return (
     <section id="workshops" className="py-24 bg-charcoal overflow-hidden">
       <div className="section-padding max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
-          ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
